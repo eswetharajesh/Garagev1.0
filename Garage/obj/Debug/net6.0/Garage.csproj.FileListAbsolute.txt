@@ -1,0 +1,14 @@
+C:\Projects\Garage\Garage\bin\Debug\net6.0\Garage.exe
+C:\Projects\Garage\Garage\bin\Debug\net6.0\Garage.deps.json
+C:\Projects\Garage\Garage\bin\Debug\net6.0\Garage.runtimeconfig.json
+C:\Projects\Garage\Garage\bin\Debug\net6.0\Garage.dll
+C:\Projects\Garage\Garage\bin\Debug\net6.0\Garage.pdb
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.AssemblyInfoInputs.cache
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.AssemblyInfo.cs
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.csproj.CoreCompileInputs.cache
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.dll
+C:\Projects\Garage\Garage\obj\Debug\net6.0\refint\Garage.dll
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.pdb
+C:\Projects\Garage\Garage\obj\Debug\net6.0\Garage.genruntimeconfig.cache
+C:\Projects\Garage\Garage\obj\Debug\net6.0\ref\Garage.dll
