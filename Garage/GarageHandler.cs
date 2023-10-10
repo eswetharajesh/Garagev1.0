@@ -19,7 +19,6 @@
         public void AddVehicleToGarage(IVehicle vehicle)
         {
             garage.AddVehicle(vehicle);
-
         }
 
         public void RemoveVehicleFromGarage(string registrationNumber)

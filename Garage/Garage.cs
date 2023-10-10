@@ -19,7 +19,7 @@
             slotOccupied = new bool[capacity]; // initializing slot traking array
         }
 
-        public bool checkCapacity(int numVehiclesToPopulate)
+        public bool checkCapacity(int numVehiclesToPopulate)// used in populateGarage method 
         {
             int availableSlot = slotOccupied.Count(occupied => !occupied);
             if (availableSlot >= numVehiclesToPopulate)
