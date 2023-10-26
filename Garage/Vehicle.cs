@@ -23,7 +23,12 @@ namespace Garage
             NumberOfWheels = numberOfWheels;
             VehicleType = vehicletype;
         }
-        
+
+        public override string ToString()
+        {
+            return $"{GetType().Name} - Registration Number: {RegistrationNumber} Color {Color} Nr of wheels {NumberOfWheels}";
+        }
+
     }
 
     public class Airplane : Vehicle
@@ -32,6 +37,11 @@ namespace Garage
         public Airplane(string registrationNumber, string color, int numberOfWheels, int numberOfEngines) : base(registrationNumber, color, numberOfWheels, "Airplane")
         {
             NumberOfengines = numberOfEngines;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} Number of engines {NumberOfengines}";
         }
 
     }
@@ -44,6 +54,11 @@ namespace Garage
             : base(registrationNumber, color, numberOfWheels, "Motorcycle")
         {
             MotorcycleType = motorcycleType;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} Type {MotorcycleType}";
         }
     }
 

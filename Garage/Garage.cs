@@ -1,11 +1,21 @@
-﻿namespace Garage
+﻿using System.Collections;
+
+namespace Garage
 {
+
+    //public class ParkinSpot
+    //{
+
+    //    public IVehicle Vehicle { get; set; }
+    //}
+
     public class Garage<T> : IGarage<T> where T : IVehicle
     {
 
         private T[] vehicles; // array for storing vehicles
-        private bool[] slotOccupied; // array to track occupied slots
+      // private bool[] slotOccupied; // array to track occupied slots
         public int Capacity { get; private set; }
+        public int Count { get; private set; }
 
         public Garage(int capacity)
         {
@@ -16,12 +26,13 @@
 
             Capacity = capacity;
             vehicles = new T[capacity];
-            slotOccupied = new bool[capacity]; // initializing slot traking array
+          //  slotOccupied = new bool[capacity]; // initializing slot traking array
         }
 
-        public bool checkCapacity(int numVehiclesToPopulate)// used in populateGarage method 
+        public bool CheckCapacity(int numVehiclesToPopulate)// used in populateGarage method 
         {
-            int availableSlot = slotOccupied.Count(occupied => !occupied);
+            //  int availableSlot = slotOccupied.Count(occupied => !occupied);
+            int availableSlot = Capacity - Count;
             if (availableSlot >= numVehiclesToPopulate)
             {
                 return true;
@@ -34,7 +45,7 @@
 
         public bool IsFull()
         {
-            return slotOccupied.All(occupied => occupied);
+            return Capacity == Count;
         }
         public void AddVehicle(T vehicle)
         {
@@ -43,31 +54,53 @@
                 Console.WriteLine("The garage is full, cannot add more vehicles.");
                 return;
             }
-            int index = Array.FindIndex(slotOccupied, occupied => !occupied);
+            int index = Array.FindIndex(vehicles, null!);
 
             vehicles[index] = vehicle;
-            slotOccupied[index] = true;
+            Count++;
+          //  slotOccupied[index] = true;
             Console.WriteLine($"Vehicle with registration number {vehicle.RegistrationNumber} added to the garage.");
 
         }
 
-        public void RemoveVehicle(string registrationNumber)
+        public bool RemoveVehicle(T vehicle)
         {
-            int index = -1;
-            for (int i = 0; i < vehicles.Length; i++)
-            {
-                if (slotOccupied[i] && vehicles[i] != null && vehicles[i].RegistrationNumber.Equals(registrationNumber, StringComparison.OrdinalIgnoreCase))
-                {
-                    index = i;
-                    break;
-                }
-            }
+            //var li = new List<int>() { 1, 2, 3, 4 };
+            //li.Remove(2);
 
-            if (index >= 0)
-            {
-                vehicles[index] = default(T);
-                slotOccupied[index] = false;
-            }
+            //foreach (int i in li)
+            //{
+
+            //}
+
+            //foreach (T vehicle in vehicles)
+            //{
+
+            //}
+            ArgumentNullException.ThrowIfNull(nameof(vehicle));
+
+            var index = Array.IndexOf(vehicles, vehicle);
+            vehicles[index] = default!;
+            Count--;
+            return true;
+
+
+            //int index = -1;
+            //for (int i = 0; i < vehicles.Length; i++)
+            //{
+            //    if (slotOccupied[i] && vehicles[i] != null && vehicles[i].RegistrationNumber.Equals(registrationNumber, StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        index = i;
+            //        break;
+            //    }
+            //}
+
+            //if (index >= 0)
+            //{
+            //    vehicles[index] = default(T);
+            //    Count--;
+            //    slotOccupied[index] = false;
+            //}
         }
 
         public void ListAllVehicles()
@@ -79,7 +112,7 @@
                 if (slotOccupied[i] && vehicles[i] != null)
                 {
                     found = true;
-                    Console.WriteLine($"{vehicles[i].GetType().Name} - Registration Number: {vehicles[i].RegistrationNumber}");
+                    Console.WriteLine(vehicles[i]);
                 }
             }
             if (!found)
@@ -116,7 +149,7 @@
             }
         }
 
-        public T FindVehicleByRegistrationNumber(string registrationNumber)
+        public T? FindVehicleByRegistrationNumber(string registrationNumber)
         {
             for (int i = 0; i < vehicles.Length; i++)
             {
@@ -148,9 +181,20 @@
         public void ClearGarage()
         {
             Array.Clear(vehicles, 0, Capacity);
-            Array.Clear(slotOccupied, 0, Capacity);
+           // Array.Clear(slotOccupied, 0, Capacity);
             Console.WriteLine("All vehicles removed from the garage.");
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var v in vehicles)
+            {
+                if(v != null)
+                    yield return v;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        
     }
 }

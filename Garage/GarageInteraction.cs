@@ -123,15 +123,23 @@ namespace Garage
                 ui.DisplayOutput($"No vehicle with registration number {registrationNumber} found in garage.");
                 return;
             }
-            garageHandler.RemoveVehicleFromGarage(registrationNumber);
-            ui.DisplayOutput($"Vehicle with registration number {registrationNumber} is removed from garage.");
+            if (garageHandler.RemoveVehicleFromGarage(registrationNumber))
+            {
+                ui.DisplayOutput($"Vehicle with registration number {registrationNumber} is removed from garage.");
+            }
+
         }
 
         public void ListAllVehicles()
         {
             ui.DisplayOutput("List of all vehicles in the garage:");
 
-            garageHandler.ListAllVehiclesInGarage();
+            var vehicles = garageHandler.ListAllVehiclesInGarage();
+
+            foreach (var item in vehicles)
+            {
+                ui.DisplayOutput(item);
+            }
 
         }
 

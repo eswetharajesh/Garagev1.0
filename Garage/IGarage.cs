@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Garage
 {
-    public interface IGarage<T> where T : IVehicle
+    public interface IGarage<T> : IEnumerable<T> where T : IVehicle
     {
         int Capacity { get; }
         void AddVehicle(T vehicle);
@@ -19,6 +19,6 @@ namespace Garage
         bool IsEmpty();
         bool IsVehicleInGarage(string registrationNumber);
         void ClearGarage();
-        bool checkCapacity(int numVehiclesToPopulate);
+        bool CheckCapacity(int numVehiclesToPopulate);
     }
 }

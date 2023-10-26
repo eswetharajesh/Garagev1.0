@@ -2,19 +2,30 @@
 
 using Garage;
 
+//Swetha
+
 public class Program
 {
+
+    
+
+    private static IUI ui = null!;
+
     static void Main(string[] args)
     {
-        IUI consoleUI = new ConsoleUI();
-        GarageHandler garageHandler = InitializeGarage(consoleUI);
-        GarageInteraction garageInteraction = new GarageInteraction(consoleUI, garageHandler);
+        //List<int> list = new List<int>();
+        //var c = list.Count;
+        //var c2 = list.Count();
+
+        ui = new ConsoleUI();
+        GarageHandler garageHandler = InitializeGarage();
+        GarageInteraction garageInteraction = new GarageInteraction(ui, garageHandler);
 
         while (true)
         {
-            ShowMainMenu(consoleUI);
+            ShowMainMenu();
 
-            string choice = consoleUI.GetInput("\nEnter your choice: ");
+            string choice = ui.GetInput("\nEnter your choice: ");
             switch (choice)
             {
                 case "1":
@@ -39,15 +50,15 @@ public class Program
                     garageInteraction.SearchVehicles();
                     break;
                 case "8":
-                    ExitApplication(consoleUI);
+                    ExitApplication();
                     return;
                 default:
-                    consoleUI.DisplayOutput("Invalid choice. Please try again.");
+                    ui.DisplayOutput("Invalid choice. Please try again.");
                     break;
             }
         }
     }
-    private static GarageHandler InitializeGarage(IUI ui)
+    private static GarageHandler InitializeGarage()
     {
         int capacity;
         while (true)
@@ -63,7 +74,7 @@ public class Program
             }
         }
     }
-    private static void ShowMainMenu(IUI ui)
+    private static void ShowMainMenu()
     {
         ui.DisplayOutput("\nGarage Application Menu: ");
         ui.DisplayOutput("\n1. List all parked vehicles.");
@@ -75,7 +86,7 @@ public class Program
         ui.DisplayOutput("\n7. Search a vehicle by characteristics.");
         ui.DisplayOutput("\n8. Exit.");
     }
-    private static void ExitApplication(IUI ui)
+    private static void ExitApplication()
     {
         ui.DisplayOutput("\nExiting the Garage Application. Tack!");
     }
